@@ -48,7 +48,26 @@ var app = new Vue({
         ],
         //words to choose from
         words: [
-            ""
+            "LOLLIPOP",
+            "TANG",
+            "LIZARD",
+            "DELICATE",
+            "FISH",
+            "SHARK",
+            "RABBIT",
+            "OFFICE",
+            "DESK",
+            "CUPS",
+            "CLOCK",
+            "OATS",
+            "GRAIN",
+            "EGGS",
+            "WRAP",
+            "ORANGE",
+            "BEAR",
+            "DELEGATE",
+            "INSPECT",
+            "STEAL",
         ],
         //currentWord will b set to random word from list above
         currentWord: "",

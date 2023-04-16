@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        
+        <link href="" rel="stylesheet"  type="text/css">
+        <link rel="stylesheet" href="" type="text/css">
+        <script src="" type=""></script>
+        <script src=""></script>
+        
+    </head>
+    <body>
+
+        <style>
+            body{
+                background: #3498db;
+            }
+
+            .box{
+                background: white;
+                width: 60%;
+                height: 60%;
+                border-radius: 6px;
+                margin: 5% auto auto auto;
+                padding: 10px;
+                text-align: center;
+                box-shadow: 5px 5px 10px #888888;
+            }
+
+            .chatBox {
+                background: #f4f4f4;
+                border-radius: 5px;
+                width: 90%;
+                height: 60%;
+                margin: 5% auto 5% auto;
+                border: 1px solid;
+                border-color: white;
+                overflow-y: scroll;
+            }
+
+            .chatCell {
+                background: white;
+                width: 100%;
+                height: 15%;
+                margin: auto auto 1px auto;
+            }
+
+            .btn {
+                background: #2ecc71;
+                height: 30px;
+                color: white;
+                border-radius: 4px;
+            }
+
+            .btn:hover {
+                background: #2CC06B;
+            }
+            
+        </style>
+        
+        <div class="box">
+            <h1>Chat</h1>
+            <div class="chatBox" id="chat-text"></div>
+            <form id="chat-form">
+                <input id="chat-input" type="text" style="width: 30%; height: 30px;" autocomplete="off">
+                <input class="btn" type="submit" value="Send"></input>
+            </form>
+        </div>
+    <script>
+        
+        var chatText = document.getElementById('chat-text');
+        var chatInput = document.getElementById('chat-input');
+        var chatForm = document.getElementById('chat-form');
+
+        var socket = io();
+        var typing = false;
+
+        //add a chat cell to our chat list view, and scroll to the bottom
+        socket.on('addToChat' ,function(data) {
+            console.log('got a chat messsage');
+            chatText.innerHTML += 'div class="chatCell">' + data + '</div>';
+            chatText.scrollTop = chatText.scrollHeight;
+        });
+
+        chatForm.onsubmit = function(e) {
+            //prevent the form from refreshing the page
+        e.preventDefault();
+
+            //call sendMsgToServer socket func, with form txt value as argument
+            socket.emit('sendMsgToServer', chatInput.value);
+            chatInput.value = "";
+        }
+        //page now responds when its connected to socket recieves 'addToChat' event, takes data and adds new instance of chatCell class and adds to chat scroll view
+        //responds when user submits a message
+        //we first prevent page from refreshing via form submission, emit sendMsgToServer with chat input's text value as an argument
+        //out app.js file will then recieve message and send to all connected sockets via the work we put in earlier
+        //also clear form text so user doesn't have to backspace to type a new message
+
+        //quality improvement section
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('chat-input').addEventListener('focus', function() {
+                typing = true;
+            });
+            document.getElementById('chat-input').addEventListener('blur', function() {
+                typing = false;
+            });
+        });
+
+        document.onkeyup = function(event) {
+            //user pressed and released enter key
+            if(event.keyCode === 13) {
+                if(!typing) {
+                    //user is not already typing, focus our chat text form
+                    chatInput.focus();
+                } else {
+                    //user sent a message unfocus chat form
+                    chatInput.blur();
+                }
+            }
+            //added event listener to chat sets up typing true while the form is focused, false is no longer focused
+            //add event for when user hits the enter key, if type false, we focus on chat input so they can begin typing without having to click on the field
+        }
+
+    </script>
+
+    </body>
+</html>

@@ -1,6 +1,6 @@
 
 //CURRENT ISSUES
-//js is not connecting to index.html
+//js is not connecting to index.html (vue package no longer available)
 //css is connecting
 
 //random int helper funct

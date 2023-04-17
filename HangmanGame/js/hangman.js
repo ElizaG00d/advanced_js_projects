@@ -1,7 +1,7 @@
 
 //CURRENT ISSUES
-//js is not connecting to index.html (vue package no longer available)
-//css is connecting
+//vue package in original was no longer available/found
+//twoPlayers prop:
 
 //random int helper funct
 function randomInteger(min, max) {
@@ -12,25 +12,25 @@ function randomInteger(min, max) {
 Vue.component("letter-button", {
     props: ["letter", "gameOVer", "twoPlayers"],
     template: "<button class='keyboard-row-letter' :id='letter' :disabled='disabled' @click='clicked()'>{{ letter }}</button>",
-    data: function() {
+    data: function () {
         return {
             disabled: false
         };
     },
     //disable button on click and send check even to run check() in main vue instance
     methods: {
-        clicked: function() {
+        clicked: function () {
             this.disabled = true;
             this.$emit("check");
         }
     },
     watch: {
         //disable all buttons on game over; re-enamble all buttons on restart
-        gameOver: function(newValue) {
+        gameOver: function (newValue) {
             this.disabled = newValue;
         },
         //re-enable all buttons when a new two-player game is started
-        twoPlayers: function(newValue) {
+        twoPlayers: function (newValue) {
             this.disabled = false;
         }
     }
@@ -86,7 +86,7 @@ var app = new Vue({
     methods: {
 
         //draws the gallows
-        drawGallows: function(ctx) {
+        drawGallows: function (ctx) {
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             ctx.fillStyle = "#FF9800";
             ctx.strokeStyle = "#FF9800";
@@ -105,14 +105,14 @@ var app = new Vue({
             ctx.closePath();
         },
         //fill this.wordDivs with empty strings to create orange blanks
-        makeBlanks: function() {
+        makeBlanks: function () {
             for (var i = 0; i < this.currentWord.length; i++) {
                 this.wordDivs.push("");
             }
         },
 
         //draws the appropriate part of hanging man and/or 'game over'
-        updateCanvas: function(ctx) {
+        updateCanvas: function (ctx) {
             //this.drawGallows(ctx);
             //draw the head
             if (this.guesses === 0) {
@@ -149,7 +149,7 @@ var app = new Vue({
             else if (this.guesses === 4) {
                 ctx.beginPath();
                 ctx.moveTo(this.canvas.width * 0.4, (this.canvas.height / 5) + 55);
-                ctx.lineTo((this.canvas.width *0.4) + 35, (this.canvas.height / 2) + 10);
+                ctx.lineTo((this.canvas.width * 0.4) + 35, (this.canvas.height / 2) + 10);
                 ctx.stroke();
                 ctx.closePath();
             }
@@ -175,7 +175,7 @@ var app = new Vue({
             this.guesses++
         },
         //check the chosen letter when a letter component emits 'check'
-        check: function(letter) {
+        check: function (letter) {
             if (!this.gameOver) {
                 var guessCorrect = false;
                 //check if the letter is in the word, if so, fill it in
@@ -186,10 +186,10 @@ var app = new Vue({
                     }
                 }
                 //if there are no more blanks in the word, u win!
-                if (!this.wordDivs.some(function(value) {return value == ""})) {
+                if (!this.wordDivs.some(function (value) { return value == "" })) {
                     this.gameOver = true;
                     this.ctx.font = "24px Roboto, sans-serif";
-                    this.ctx.fillText("You Win!". this.canvas.width * 0.4 - 30, this.canvas.height * 0.9);
+                    this.ctx.fillText("You Win!".this.canvas.width * 0.4 - 30, this.canvas.height * 0.9);
                 }
                 //if they guess wrong, draw the man
                 if (!guessCorrect) {
@@ -198,7 +198,7 @@ var app = new Vue({
             }
         },
         // re-initialize the game
-        restart: function() {
+        restart: function () {
             this.gameOver = false;
             this.lose = false;
             this.guesses = 0;
@@ -208,7 +208,7 @@ var app = new Vue({
         },
 
         //resets the game to one-player mode and chooses a new word
-        onePlayer: function() {
+        onePlayer: function () {
             if (this.twoPlayers) {
                 this.twoPlayers = false;
                 this.currentWord = this.words[randomInteger(0, this.words.length - 1)];
@@ -216,7 +216,7 @@ var app = new Vue({
             }
         },
         //starts two-player mode and prompts user to enter a word
-        twoPlayer: function() {
+        twoPlayer: function () {
             if (!this.twoPlayers) {
                 this.gameOver = true;
                 this.twoPlayers = true;
@@ -224,7 +224,7 @@ var app = new Vue({
                 try {
                     this.currentWord = prompt("Enter a word!").toUpperCase();
                 }
-                catch(e) {
+                catch (e) {
                     this.onePlayer();
                     return;
                 }
@@ -233,7 +233,7 @@ var app = new Vue({
                     try {
                         this.currentWord = prompt("Only letters please! Enter a word:").toUpperCase();
                     }
-                    catch(e) {
+                    catch (e) {
                         this.onePlayer();
                         return;
                     }
@@ -242,12 +242,12 @@ var app = new Vue({
             }
         },
         //chooses a new word and resets the game when 'play again' is clicked
-        playAgain: function() {
+        playAgain: function () {
             if (this.twoPlayers) {
                 try {
                     this.currentWord = prompt("Enter a word!").toUpperCase();
                 }
-                catch(e) {
+                catch (e) {
                     this.onePlayer();
                     return;
                 }
@@ -256,7 +256,7 @@ var app = new Vue({
                     try {
                         this.currentWord = prompt("Only letters please! Enter a word:").toUpperCase();
                     }
-                    catch(e) {
+                    catch (e) {
                         this.onePlayer();
                         return;
                     }
@@ -269,7 +269,7 @@ var app = new Vue({
         }
     },
     //id the canvas element and init it, draws the gallows, choose a word, and draw the blanks.
-    mounted: function() {
+    mounted: function () {
         this.canvas = document.getElementById("board-canvas");
         this.canvas.width = document.getElementById("board").offsetWidth;
         this.canvas.height = document.getElementById("board").offsetHeight;

@@ -7,7 +7,6 @@
         <title>Minesweeper</title>
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-        <!--different scripting url in this version-->
         <!--original is "1.8.2"-->
         <script src="./js/script.js"></script>
     </head>
@@ -21,7 +20,16 @@
                     <td ng-repeat="spot in row.spots" ng-click="spot.isCovered = false">
                         <!--{{spot.isCovered}}-->
                         <img ng-if="spot.isCovered" src="./images/covered.png">
-                        <img ng-if="!spot.isCovered" src="./images/empty.png">
+                        <img ng-if="!spot.isCovered && spot.content == 'empty'" src="./images/empty.png">
+                        <img ng-if="!spot.isCovered && spot.content == 'mine'" src="./images/mine.png">
+                        <img ng-if="!spot.isCovered && spot.content == 1" src="./images/number-1.png">
+                        <img ng-if="!spot.isCovered && spot.content == 2" src="./images/number-2.png">
+                        <img ng-if="!spot.isCovered && spot.content == 3" src="./images/number-3.png">
+                        <img ng-if="!spot.isCovered && spot.content == 4" src="./images/number-4.png">
+                        <img ng-if="!spot.isCovered && spot.content == 5" src="./images/number-5.png">
+                        <img ng-if="!spot.isCovered && spot.content == 6" src="./images/number-6.png">
+                        <img ng-if="!spot.isCovered && spot.content == 7" src="./images/number-7.png">
+                        <img ng-if="!spot.isCovered && spot.content == 8" src="./images/number-8.png">
                     </td>
                 </tr>
             </table>

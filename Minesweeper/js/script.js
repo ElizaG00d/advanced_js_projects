@@ -134,6 +134,19 @@ function calculateAllNumbers(minefield) {
     }
 }
 
+//win or lose
+function hasWon(minefield) {
+    for(let y = 0; y < 9; y++) {
+        for(let x = 0; x < 9; x++) {
+            let spot = getSpot(minefield, y, x);
+            if(spot.isCovered && spot.content != "mine") {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 //below function from simplygoodcode version
 //function minesweeperController($scope) {
     //$scope.minefield = createMinefield();
@@ -142,8 +155,19 @@ function calculateAllNumbers(minefield) {
 const minesweeperModule = angular.module('minesweeperApp', []);
 
 const minesweeperController = function($scope) {
-    $scope.test = "Everything is just fine."
-    $scope.minefield = createMinefield();
+    //$scope.test = "Everything is just fine."
+    $scope.minefield = createMinefield(); //in order to call function, add to $scope
+    $scope.uncoverSpot = function(spot) {
+        spot.isCovered = false;
+
+        if(spot.content == "mine") {
+            $scope.hasLostMessageVisible = true;
+        } else {
+            if(hasWon($scope.minefield)) {
+                $scope.isWinMessageVisible = true;
+            }
+        }
+    }
 }
 
 minesweeperModule.controller("minesweeperController", minesweeperController);

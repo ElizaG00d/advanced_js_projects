@@ -1,4 +1,4 @@
-//CURRENT ISSUES
+//CURRENT ISSUES 0
 
 //minefield object, grid of rows and cols
 //use arrays for cols and rows, objects to keep track of each spot in the grid

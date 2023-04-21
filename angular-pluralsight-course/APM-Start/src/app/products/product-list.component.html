@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        Product List
+        {{pageTitle}}
     </div>
 </div>
 
@@ -22,7 +22,7 @@
     <!--table-->
     <div class='table-responsive'>
         <table class='table'
-               *ngIf='products.length'>
+               *ngIf='products.length'> <!--if true display data-->
           <thead>
             <tr>
               <th>
@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor='let product of filteredProducts'> <!--currently empty in tutorial-->
+            <tr *ngFor='let product of products'> <!--repeat table row for list of products-->
               <td>
                 <img *ngIf='showImage'
                      [src]='product.imageUrl'
@@ -47,10 +47,10 @@
                      [style.width.px]='imageWidth'
                      [style.margin.px]='imageMargin'>
               </td>
-              <td>
+              <td> <!--initially uses just interpolation to bind products-->
                 <a [routerLink]="['/products', product.productId]">
                   {{ product.productName }}
-                </a>
+                </a> <!--<td>{{product.productName}}</td>-->
               </td>
               <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td>
               <td>{{ product.releaseDate }}</td>

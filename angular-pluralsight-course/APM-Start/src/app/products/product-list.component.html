@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor='let product of products'> <!--repeat table row for list of products-->
+            <tr *ngFor='let product of filterProducts'> <!--repeat table row for list of products-->
               <td>
                 <img *ngIf='showImage'
                      [src]='product.imageUrl'
@@ -53,7 +53,7 @@
                   {{ product.productName }}
                 </a> <!--<td>{{product.productName}}</td>-->
               </td>
-              <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td> <!--pipes example-->
+              <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td> <!--pipes example, custom pipe binding-->
               <td>{{ product.releaseDate }}</td>
               <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td> <!--another pipes example-->
               <td>

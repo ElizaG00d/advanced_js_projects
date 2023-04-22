@@ -53,9 +53,9 @@
                   {{ product.productName }}
                 </a> <!--<td>{{product.productName}}</td>-->
               </td>
-              <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td>
+              <td>{{ product.productCode | lowercase | convertToSpaces:'-' }}</td> <!--pipes example-->
               <td>{{ product.releaseDate }}</td>
-              <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td> <!--another pipes example-->
               <td>
                 <pm-star [rating]='product.starRating'
                          (ratingClicked)='onRatingClicked($event)'>

@@ -10,6 +10,7 @@ export class ProductListComponent {
     imageWidth: number = 50;
     imageMargin: number = 2;
     showImage: boolean = false; //image not displayed when page first loaded
+    listFilter: string = 'cart';
     products: any[] = [
         {
             "productId": 2,

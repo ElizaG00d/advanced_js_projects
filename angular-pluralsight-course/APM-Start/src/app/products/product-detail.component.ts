@@ -10,7 +10,8 @@ import { ProductService } from './products.service';
 export class ProductDetailComponent implements OnInit {
   pageTitle = 'Product Detail';
   errorMessage = '';
-  product: IProduct | undefined;
+  product: IProduct | undefined; //handling undefined and null
+  //undefined until data is retrieved
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -18,6 +19,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+    const id =Number(this.route.snapshot.paramMap.get('id'));
+    this.pageTitle += `: ${id}`;
+  } //code to read the route param
+
+  onBack(): void {
+    this.router.navigate(['/products']);
+  } //back button routing
+
 
 }

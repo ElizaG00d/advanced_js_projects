@@ -28,7 +28,7 @@ import { RouterModule } from '@angular/router';
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
-    ]),
+    ]), //need to edit and add canActivate route for proper routing guard
   ],
   bootstrap: [AppComponent]
 })

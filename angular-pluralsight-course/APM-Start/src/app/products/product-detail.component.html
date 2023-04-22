@@ -1,10 +1,10 @@
 <div class='card'>
     <div class='card-header'>
       {{pageTitle + ': ' + product?.productName}}
-    </div>
+    </div> <!--safe navigation guards against null and undefined-->
   
     <div class='card-body'
-         *ngIf='product'>
+         *ngIf='product'> <!--hide and show product data-->
       <div class='row'>
         <div class='col-md-8'>
           <div class='row'>
@@ -46,7 +46,7 @@
       </div>
     </div>
   
-    <div class='card-footer'>
+    <div class='card-footer'> <!--back button detailing-->
       <button class='btn btn-outline-secondary'
               style='width:80px'
               (click)='onBack()'>

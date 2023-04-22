@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { IProduct } from "./product";
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, tap, throwError, map } from 'rxjs';
+
+import { IProduct } from "./product";
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class ProductService {
             tap(data => console.log('All ', JSON.stringify(data))),
             catchError(this.handleError)
         );
-    }
+    } //http request and response handling, watch data fly by
 
     // Get one product
     // Since we are working with a json file, we can only retrieve all products

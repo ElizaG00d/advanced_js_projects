@@ -49,6 +49,7 @@
               </td> <!--property binding [src]='product.imageUrl'-->
 
               <td> <!--initially uses just interpolation to bind products-->
+                <!--routing example below as well-->
                 <a [routerLink]="['/products', product.productId]">
                   {{ product.productName }}
                 </a> <!--<td>{{product.productName}}</td>-->

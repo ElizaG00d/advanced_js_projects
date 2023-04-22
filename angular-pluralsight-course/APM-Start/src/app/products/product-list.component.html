@@ -29,7 +29,7 @@
                 <button class='btn btn-primary'
                         (click)='toggleImage()'>
                   {{showImage ? 'Hide' : 'Show'}} Image
-                </button>
+                </button> <!--event binding-->
               </th>
               <th>Product</th>
               <th>Code</th>
@@ -46,7 +46,8 @@
                      [title]='product.productName'
                      [style.width.px]='imageWidth'
                      [style.margin.px]='imageMargin'>
-              </td>
+              </td> <!--property binding [src]='product.imageUrl'-->
+
               <td> <!--initially uses just interpolation to bind products-->
                 <a [routerLink]="['/products', product.productId]">
                   {{ product.productName }}

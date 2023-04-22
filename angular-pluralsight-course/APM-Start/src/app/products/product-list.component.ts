@@ -7,6 +7,9 @@ import { Component } from "@angular/core";
 
 export class ProductListComponent {
     pageTitle: string = 'Product List';
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    showImage: boolean = false; //image not displayed when page first loaded
     products: any[] = [
         {
             "productId": 2,
@@ -49,6 +52,15 @@ export class ProductListComponent {
             "imageUrl": "assets/images/xbox-controller.png"
           }
     ];
+
+    //methods/functions typically placed after the declaration
+toggleImage(): void {
+    this.showImage = !this.showImage;
+} 
+//typescript does need function()
+//function toggles the state of the show image property
+//void is no return
 }
 
 //any[] don't care the data type
+

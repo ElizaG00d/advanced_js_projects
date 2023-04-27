@@ -1,0 +1,28 @@
+<div class="score-board">
+  <div class="badge" id="user-label">user : {{userSelected}}</div>
+  <div class="badge" id="comp-label">comp : {{compSelected}}</div>
+  <span id="user-score">{{userScore}}</span>:<span id="comp-score"> {{ compScore }}</span>
+</div>
+
+<div class="result">
+  <p *ngIf="status">{{userSelected}} {{action}} {{compSelected}} {{status}} </p>
+</div>
+
+<div class="choices">
+  <div class="choice" id="rock">
+    <img src="" (click)="userPick('rock')">
+  </div>
+  <div class="choice" id="paper">
+    <img src="" (click)="userPick('paper')">
+  </div>
+  <div class="choice" id="scissors">
+    <img src="" (click)="userPick('scissors')">
+  </div>
+</div>
+
+<p id="action-message" *ngIf="!status">You can make your move!</p>
+<p id="action-message" *ngIf="status">Wait...</p>
+
+<!--(click)='userPick' event binding {{userScore}} data binding, *ngIf used to display the markup conditionally-->
+<!--challenge: change title, change font style and size, change highlight color of hand icon when clicked-->
+<!--change score background color for user and comp-->

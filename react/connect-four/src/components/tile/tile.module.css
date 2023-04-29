@@ -1,0 +1,26 @@
+
+.tile {
+    width: 75px;
+    height: 75px;
+    border: solid 10px #3355ff;
+    border-radius: 100%;
+    background-color: white;
+}
+
+.chip {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    background-color: gray;
+}
+
+.yellow {
+    background-color: #ffff33;
+}
+
+.red {
+    background-color: #ff010b;
+}
+
+/* [name].module.css by transpiling them using css modules library, no name clashing */
+/* each file treated as isolated module, after transpile, css names replaced with unique values */

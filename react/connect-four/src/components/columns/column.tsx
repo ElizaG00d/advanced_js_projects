@@ -20,6 +20,6 @@ export default class Column extends React.PureComponent<Props> {
                 />
             );
         }
-        return <div className="{styles.column}">{tiles}</div>;
+        return <div className={styles.column}>{tiles}</div>;
     }
 }

@@ -9,7 +9,7 @@ export default class Tile extends React.PureComponent<Props> {
         const chipCssClass = classNames(styles.chip, chipType === "red" ? styles.red : styles.yellow);
 
         return (
-            <div className="{styles.tile}" onClick={() => onClick(id)}> {chipType && <div className={chipCssClass} />}
+            <div className={styles.tile} onClick={() => onClick(id)}> {chipType && <div className={chipCssClass} />}
             </div>
         ); //in charge of drawing tiles of board
     }

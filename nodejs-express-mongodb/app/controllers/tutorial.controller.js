@@ -63,7 +63,7 @@ exports.update = (req, res) => {
                 res.status(404).send({
                     message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
                 });
-            } else res.send({ message: "Error updating Tutorial with id=" id });
+            } else res.send({ message: "tutorial was updated successfully." });
         })
         .catch(err => {
             res.status(500).send({
@@ -118,7 +118,7 @@ exports.findAllPublished = (req, res) => {
 
     //Tutorial.find({ published: true })
 
-    //?controller can be modded for pagination response?
+    //?controller can be modded for pagination?
 
     Tutorial.find(condition)
         .then(data => {

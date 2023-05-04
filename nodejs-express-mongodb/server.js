@@ -1,5 +1,5 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 
@@ -8,6 +8,12 @@ var corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+//parse req of content type - application/json
+app.use(express.json());
+
+//parse reqs of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 const db = require('./app/models');
 db.mongoose
@@ -22,12 +28,6 @@ db.mongoose
         console.log('Cannot connect to the database!', err);
         process.exit();
     });
-
-//parse req of content type - application/json
-app.use(express.json());
-
-//parse reqs of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
 
 //simple route
 app.get("/", (req, res) => {

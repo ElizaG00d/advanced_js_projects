@@ -12,7 +12,7 @@ module.exports = mongoose => {
     );
 
     return Tutorial;
-}
+};
 
 //mongoose model def
 //reps tutorials collection in db

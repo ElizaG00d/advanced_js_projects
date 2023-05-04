@@ -79,7 +79,7 @@ exports.delete = (req, res) => {
     Tutorial.findIdAndRemove(id)
         .then(data => {
             if (!data) {
-                res.status.(404).send({
+                res.status(404).send({
                     message: `Cannot find Tutorial with id=${id}. Maybe Tutorial was not found!`
                 });
             } else {

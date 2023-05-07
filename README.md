@@ -7,7 +7,7 @@ js projects for advanced js class
 + Pluralsight projects
   - Msc apm testing
 + React Projects
-  - First React App
+  - "First React App"
   - Connect Four
 + MVC-Todo-App
 + Minesweeper AngularJS
